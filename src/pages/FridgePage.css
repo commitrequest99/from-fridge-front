@@ -1,0 +1,209 @@
+.fridge-page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.fridge-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.fridge-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #222;
+}
+
+.find-btn {
+  padding: 10px 24px;
+  background: #2d8a4e;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.find-btn:hover {
+  background: #236b3d;
+}
+
+/* Строка добавления */
+.add-product-bar {
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.add-product-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 14px;
+  padding: 12px 16px;
+  transition: border 0.2s;
+}
+
+.add-product-input-wrap:focus-within {
+  border-color: #2d8a4e;
+}
+
+.add-icon {
+  font-size: 20px;
+  color: #2d8a4e;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.add-product-input-wrap input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: #333;
+  background: transparent;
+}
+
+.add-product-input-wrap input::placeholder {
+  color: #bbb;
+}
+
+.ingredient-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  z-index: 50;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.dropdown-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: background 0.15s;
+}
+
+.dropdown-item:hover {
+  background: #f0faf4;
+  color: #2d8a4e;
+}
+
+.dropdown-empty {
+  padding: 14px 16px;
+  color: #bbb;
+  font-size: 14px;
+}
+
+/* Холодильник */
+.fridge-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.fridge-body {
+  width: 100%;
+  border: 2.5px solid #2d8a4e;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(45,138,78,0.08);
+}
+
+.fridge-freezer {
+  padding: 20px 24px;
+  background: #eaf7ef;
+  border-bottom: 2.5px solid #2d8a4e;
+  min-height: 110px;
+  position: relative;
+}
+
+.fridge-main {
+  padding: 20px 24px;
+  min-height: 260px;
+  position: relative;
+}
+
+.fridge-main-inner {
+  padding-right: 24px;
+}
+
+.fridge-zone-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2d8a4e;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.fridge-handle {
+  width: 5px;
+  height: 48px;
+  background: #2d8a4e;
+  border-radius: 4px;
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.2;
+}
+
+.fridge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border: 1.5px solid #d0ead9;
+  border-radius: 20px;
+  padding: 8px 14px 8px 16px;
+  font-size: 13px;
+  color: #333;
+  transition: all 0.15s;
+  margin: 4px;
+}
+
+.fridge-tag:hover {
+  background: #f0faf4;
+  border-color: #2d8a4e;
+}
+
+.fridge-tag button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #bbb;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.fridge-tag button:hover {
+  color: #e53935;
+}
+
+.zone-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.fridge-count {
+  font-size: 13px;
+  color: #aaa;
+}
