@@ -9,8 +9,7 @@ export default function AdminPage() {
   const [recipes, setRecipes] = useState([])
   const [newIngredient, setNewIngredient] = useState('')
   const [recipe, setRecipe] = useState({
-    title: '', category: '', cuisine: '', description: '',
-    instructions: '', cookingTime: '', ingredientsWithQuantity: ''
+    title: '', category: '', country: '', instructions: '', ingredientsWithQuantity: ''
   })
   const [message, setMessage] = useState('')
   const [activeTab, setActiveTab] = useState('ingredients')
@@ -36,16 +35,15 @@ export default function AdminPage() {
   const handleAddRecipe = async (e) => {
     e.preventDefault()
     await addRecipe({
-      ...recipe,
-      cookingTime: parseInt(recipe.cookingTime) || null,
+      title: recipe.title,
+      category: recipe.category,
+      country: recipe.country,
+      instructions: recipe.instructions,
       ingredientsWithQuantity: recipe.ingredientsWithQuantity
         .split('\n').map(s => s.trim()).filter(Boolean)
     })
     setMessage('Рецепт успешно добавлен!')
-    setRecipe({
-      title: '', category: '', cuisine: '', description: '',
-      instructions: '', cookingTime: '', ingredientsWithQuantity: ''
-    })
+    setRecipe({ title: '', category: '', country: '', instructions: '', ingredientsWithQuantity: '' })
     const res = await getAllRecipes()
     setRecipes(res.data)
     setTimeout(() => setMessage(''), 3000)
@@ -132,10 +130,8 @@ export default function AdminPage() {
                 <div className="recipe-row-info">
                   <span className="recipe-row-title">{r.title}</span>
                   <div className="recipe-row-meta">
-                    {r.cuisine && <span>{r.cuisine}</span>}
-                    {r.cookingTime && <span>· {r.cookingTime} мин</span>}
+                    {r.country && <span>{r.country}</span>}
                     {r.category && <span>· {r.category}</span>}
-                    {r.isArchived && <span className="archived-badge">Архив</span>}
                   </div>
                 </div>
                 <div className="recipe-row-actions">
@@ -174,28 +170,16 @@ export default function AdminPage() {
             />
             <div className="form-row">
               <input
-                placeholder="Категория (Завтрак, Обед...)"
+                placeholder="Категория (Курица, Десерт...)"
                 value={recipe.category}
                 onChange={e => setRecipe({ ...recipe, category: e.target.value })}
               />
               <input
-                placeholder="Кухня"
-                value={recipe.cuisine}
-                onChange={e => setRecipe({ ...recipe, cuisine: e.target.value })}
+                placeholder="Страна (Италия, Япония...)"
+                value={recipe.country}
+                onChange={e => setRecipe({ ...recipe, country: e.target.value })}
               />
             </div>
-            <input
-              placeholder="Время приготовления (мин)"
-              type="number"
-              value={recipe.cookingTime}
-              onChange={e => setRecipe({ ...recipe, cookingTime: e.target.value })}
-            />
-            <textarea
-              placeholder="Описание"
-              value={recipe.description}
-              onChange={e => setRecipe({ ...recipe, description: e.target.value })}
-              rows={2}
-            />
             <textarea
               placeholder="Инструкция *"
               value={recipe.instructions}

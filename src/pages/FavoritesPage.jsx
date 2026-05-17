@@ -49,7 +49,12 @@ export default function FavoritesPage() {
         <div className="fav-grid">
           {favorites.map(fav => (
             <div key={fav.id} className="fav-card" onClick={() => openRecipe(fav)}>
-              <div className="fav-card-placeholder">🍽️</div>
+              <img
+                src={`/img/${fav.recipeId}.jpg`}
+                alt={fav.recipeTitle}
+                className="fav-card-img"
+                onError={e => { e.target.style.display = 'none' }}
+              />
               <div className="fav-card-info">
                 <div className="fav-card-title">{fav.recipeTitle}</div>
                 <div className="fav-card-date">
@@ -72,14 +77,18 @@ export default function FavoritesPage() {
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal" onClick={e => e.stopPropagation()}>
             <button className="modal-close" onClick={closeModal}>×</button>
-            <div className="modal-placeholder">🍽️</div>
+            <img
+              src={detail?.imageUrl || `/img/${selected.recipeId}.jpg`}
+              alt={selected.recipeTitle}
+              className="modal-img"
+              onError={e => { e.target.style.display = 'none' }}
+            />
             <div className="modal-content">
               <h2>{selected.recipeTitle}</h2>
               {detail ? (
                 <>
                   <div className="modal-tags">
-                    {detail.cuisine && <span className="tag">{detail.cuisine}</span>}
-                    {detail.cookingTime && <span className="tag">{detail.cookingTime} мин</span>}
+                    {detail.country && <span className="tag">{detail.country}</span>}
                   </div>
                   {detail.ingredients?.length > 0 && (
                     <>
@@ -97,8 +106,8 @@ export default function FavoritesPage() {
                     <>
                       <h3>Инструкция:</h3>
                       <ol className="modal-instructions">
-                        {detail.instructions.split('.').filter(s => s.trim()).map((step, i) => (
-                          <li key={i}>{step.trim()}.</li>
+                        {detail.instructions.split(/\\n|\n/).filter(s => s.trim()).map((step, i) => (
+                          <li key={i}>{step.trim()}</li>
                         ))}
                       </ol>
                     </>
